@@ -1,0 +1,5 @@
+idNotificacion,Texto,fechaHoraEnvio,FechaHoraRecepcion,idCategoria,Categoria,idEtiqueta,Etiqueta,idEmisor,Emisor
+1,Primera Notificacion,10-10-2014,null,1,Animales,1,Recibido,1,Juan
+2,Segunda Notificacion,14-10-2014,null,1,Animales,1,Recibido,1,Juan
+3,Tercera not,20-10-2014,null,2,Alimenatción,1,Recibido,2,Pedro
+4,Cuerta not,23-10-2014,null,2,Alimentacion,1,Recibido,2,Pedro
