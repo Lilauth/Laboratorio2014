@@ -11,6 +11,12 @@ public class Modelo {
 	private Categorias categorias;
 	private Notificaciones notificaciones;
 	
+	public Modelo(){
+		etiquetas = new Etiquetas();
+		categorias = new Categorias();
+		notificaciones = new Notificaciones();
+	}
+	
 	/*getters y setters*/
 	public Etiquetas getEtiquetas() {
 		return etiquetas;
@@ -31,12 +37,23 @@ public class Modelo {
 		this.notificaciones = notificaciones;
 	}
 	
+	private void recuperarCategorias(){
+		//recupera las categorias 		
+		categorias.recuperar();
+	}
+	
+	private void recuperarEtiquetas(){
+		etiquetas.recuperar();
+	}
+	
 	/*levanta el modelo desde el archivo de texto*/
 	public boolean iniciar(){
 		String csvFile = "/home/lilauth/Modelo.csv";
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
+		this.recuperarCategorias();
+		this.recuperarEtiquetas();
 		try {
 			br = new BufferedReader(new FileReader(csvFile));
 			while ((line = br.readLine()) != null) {

@@ -1,9 +1,25 @@
 package test;
 
+import model.Categorias;
+import model.Etiquetas;
+
 public class AplicacionTest {
 
-	public static void main(String[] args) {		
-		System.out.println("algo");
+	public static void main(String[] args) {
+		EtiquetasTest etest = new EtiquetasTest();
+		etest.crearEtiquetas();
+		
+		Etiquetas listaEtiquetas = new Etiquetas();
+		listaEtiquetas.setEtiquetas(etest.retEtiquetas());
+		
+		CategoriaTest ctest = new CategoriaTest();
+		ctest.crearCategorias();
+		
+		Categorias listaCat = new Categorias();
+		listaCat.setCategorias(ctest.retCategorias());			
+		
+		listaEtiquetas.persistir();
+		listaCat.persistir();
 	}
 
 }

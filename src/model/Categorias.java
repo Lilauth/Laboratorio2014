@@ -14,6 +14,10 @@ public class Categorias {
 		lista = new ArrayList<Categoria>();
 	}
 	
+	public void setCategorias(ArrayList<Categoria> lista){
+		this.lista = lista;
+	}
+	
 	public void listar(){
 		//lista todas las categorias cargadaen lista
 		for(Categoria c: lista){

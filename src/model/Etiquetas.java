@@ -15,6 +15,10 @@ public class Etiquetas {
 		lista = new ArrayList<Etiqueta>();
 	}
 	
+	public void setEtiquetas(ArrayList<Etiqueta> lista){
+		this.lista = lista; 
+	}
+	
 	public void listar(){
 		//lista todas las categorias cargadaen lista
 		for(Etiqueta e: lista){
@@ -95,7 +99,7 @@ public class Etiquetas {
 		
 		ObjectInputStream entrada = null;
 		try{		
-			entrada= new ObjectInputStream(new FileInputStream("notificaciones.dat"));
+			entrada= new ObjectInputStream(new FileInputStream("etiquetas.dat"));
 			lista = (ArrayList<Etiqueta>)entrada.readObject();
 			entrada.close();
 		}
