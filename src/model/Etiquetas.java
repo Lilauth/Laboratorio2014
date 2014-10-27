@@ -56,7 +56,9 @@ public class Etiquetas {
 			if(lista.get(i).getIdEtiqueta() == id){
 				ok = true;
 			}
-			i++;
+			else{
+				i++;
+			}
 		}	
 		if(ok){
 			return lista.get(i);

@@ -2,6 +2,7 @@ package test;
 
 import model.Categorias;
 import model.Etiquetas;
+import model.Modelo;
 
 public class AplicacionTest {
 
@@ -20,6 +21,9 @@ public class AplicacionTest {
 		
 		listaEtiquetas.persistir();
 		listaCat.persistir();
+		
+		Modelo md = new Modelo();
+		md.iniciar();
 	}
 
 }

@@ -59,6 +59,10 @@ public class Notificacion implements Serializable{
 	public ArrayList<Etiqueta> getEtiquetas() {
 		return etiquetas;
 	}
+	
+	public void addEtiqueta(Etiqueta et){
+		this.etiquetas.add(et);
+	}
 	public void setEtiquetas(ArrayList<Etiqueta> etiquetas) {
 		this.etiquetas = etiquetas;
 	}

@@ -9,6 +9,11 @@ public class Etiqueta implements Serializable{
 	
 	public Etiqueta(){}
 	
+	public Etiqueta(int id, String descripcion){
+		this.setIdEtiqueta(id);
+		this.setDescripcion(descripcion);		
+	}
+	
 	public int getIdEtiqueta() {
 		return idEtiqueta;
 	}

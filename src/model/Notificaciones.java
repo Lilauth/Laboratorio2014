@@ -15,10 +15,14 @@ public class Notificaciones {
 	}
 	
 	public void listar(){
-		//lista todas las categorias cargadaen lista
+		//lista todas las notificaciones cargadaen lista
 		for(Notificacion not: lista){
 			System.out.println(not.getTexto());
 		}
+	}
+	
+	public void addNotificacion(Notificacion notif){
+		this.lista.add(notif);
 	}
 	
 	/*métodos que tienen que ver con la persistencia de las notificaciones*/

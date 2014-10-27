@@ -25,6 +25,25 @@ public class Categorias {
 		}
 	}
 	
+	public Categoria getCategoria(int id){
+		int i = 0;
+		Boolean ok = false;
+		while((i < lista.size()) && (!ok)){
+			if(lista.get(i).getIdCategoria() == id){
+				ok = true;
+			}
+			else{
+			i++;
+			}
+		}	
+		if(ok){
+			return lista.get(i);
+		}
+		else{
+			return null;
+		}
+	}
+	
 	private boolean existeCategoria(Categoria cat){
 		int i = 0;
 		Boolean ok = false;
@@ -32,7 +51,9 @@ public class Categorias {
 			if(lista.get(i).getDescripcion() == cat.getDescripcion()){
 				ok = true;
 			}
-			i++;
+			else{
+				i++;
+			}
 		}
 		return ok;
 	}
