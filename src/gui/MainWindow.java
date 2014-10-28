@@ -1,12 +1,25 @@
 package gui;
 
 import java.awt.EventQueue;
-
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
+
+import model.Categoria;
+import model.Categorias;
+import model.Etiqueta;
+import model.Etiquetas;
+import model.Modelo;
 
 public class MainWindow {
 
 	private JFrame frame;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -30,14 +43,74 @@ public class MainWindow {
 	public MainWindow() {
 		initialize();
 	}
+	
+	private Modelo iniciarModelo(){
+		Modelo md = new Modelo();
+		md.iniciar();
+		return md;
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
+		Modelo m = this.iniciarModelo();
+		Categorias cats = m.getCategorias();
+		Etiquetas ets = m.getEtiquetas();
+		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 554, 357);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 537, 41);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.setBounds(10, 11, 107, 23);
+		panel.add(btnActualizar);
+		//vamos por el jCombobox
+		JComboBox comboBox = new JComboBox();
+		//agrego los items que van a ser listados
+		/*mientras no se termine la lista de Categorias agrego un item*/
+		comboBox.addItem("Todos");
+		for(Categoria c: cats.getCategorias()){
+			comboBox.addItem(c);
+		}		
+		comboBox.setBounds(127, 12, 164, 20);
+		panel.add(comboBox);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 43, 537, 251);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"Emisor", "Detalle", "Etiqueta"
+			}
+		));
+		table.setBounds(133, 0, 404, 251);
+		panel_1.add(table);
+		//lista de etiquetas+		
+		DefaultListModel listModel = new DefaultListModel();
+		for (Etiqueta et: ets.getEtiquetas()){
+			listModel.addElement(et);
+		}
+				
+		JList list = new JList(listModel);
+		//JList list = new JList();		
+		list.setBounds(0, -1, 129, 84);
+		list.setLayoutOrientation(JList.VERTICAL);						
+		panel_1.add(list);
 	}
-
 }

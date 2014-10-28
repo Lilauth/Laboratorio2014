@@ -14,8 +14,7 @@ public class AplicacionTest {
 		listaEtiquetas.setEtiquetas(etest.retEtiquetas());
 		
 		CategoriaTest ctest = new CategoriaTest();
-		ctest.crearCategorias();
-		
+		ctest.crearCategorias();		
 		Categorias listaCat = new Categorias();
 		listaCat.setCategorias(ctest.retCategorias());			
 		

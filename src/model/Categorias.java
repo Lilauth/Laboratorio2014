@@ -58,6 +58,10 @@ public class Categorias {
 		return ok;
 	}
 	
+	public ArrayList<Categoria> getCategorias(){
+		return this.lista;
+	}
+	
 	public void agregarCategoria(Categoria cat){
 		//si no existe la etiqueta la agrego. Compara por descripcion
 		if (!existeCategoria(cat)){
@@ -94,9 +98,10 @@ public class Categorias {
 			}
 		}
 	}
+		
 	
 	@SuppressWarnings("unchecked")
-	public Categorias recuperar(){	
+	public Categorias recuperar(){			
 		lista.clear();		
 		ObjectInputStream entrada = null;
 		try{

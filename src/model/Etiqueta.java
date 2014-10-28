@@ -26,5 +26,9 @@ public class Etiqueta implements Serializable{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public String toString(){
+		return this.descripcion;
+	}
 
 }

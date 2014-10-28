@@ -19,6 +19,10 @@ public class Etiquetas {
 		this.lista = lista; 
 	}
 	
+	public ArrayList<Etiqueta> getEtiquetas(){
+		return this.lista; 
+	}
+	
 	public void listar(){
 		//lista todas las categorias cargadaen lista
 		for(Etiqueta e: lista){

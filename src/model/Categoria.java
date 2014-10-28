@@ -28,5 +28,9 @@ public class Categoria implements Serializable{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public String toString(){
+		return this.descripcion;
+	}
 
 }
