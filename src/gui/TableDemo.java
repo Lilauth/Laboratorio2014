@@ -40,6 +40,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -48,7 +49,11 @@ import java.awt.GridLayout;
  * uses a custom TableModel.
  */
 public class TableDemo extends JPanel {
-    private boolean DEBUG = false;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private boolean DEBUG = false;
 
     public TableDemo() {
         super(new GridLayout(1,0));
@@ -65,7 +70,11 @@ public class TableDemo extends JPanel {
     }
 
     class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"First Name",
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private String[] columnNames = {"First Name",
                                         "Last Name",
                                         "Sport",
                                         "# of Years",
@@ -105,7 +114,8 @@ public class TableDemo extends JPanel {
          * then the last column would contain text ("true"/"false"),
          * rather than a check box.
          */
-        public Class getColumnClass(int c) {
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+		public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
         }
 

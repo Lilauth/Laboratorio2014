@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 //import java.util.Date;
-import java.text.DateFormat;
+//import java.text.DateFormat;
 //import java.text.ParseException;
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 
 public class Modelo {
 	/*esta clase levanta todas las clases del modelo que haya */
@@ -58,9 +58,9 @@ public class Modelo {
 		Categoria cat;
 		Emisor em;
 		Notificacion notif;
-		String fechaHoraEnvio;
-		String fechaHoraRecepcion;
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		//String fechaHoraEnvio;
+		//String fechaHoraRecepcion;
+		//DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
 		//String csvFile = "/home/lilauth/Modelo.csv";
 		String csvFile = "C:\\Users\\Lilauth\\workspace\\Comunicador\\Modelo.csv";
@@ -102,8 +102,8 @@ public class Modelo {
 				em.setIdEmisor(Integer.parseInt(linea[8]));
 				em.setNombre(linea[9]);
 				//finalmente hago la notificacion
-				fechaHoraEnvio = linea[2];
-				fechaHoraRecepcion = linea[3];					
+				//fechaHoraEnvio = linea[2];
+				//fechaHoraRecepcion = linea[3];					
 					
 				notif = new Notificacion();
 				notif.setEmisor(em);

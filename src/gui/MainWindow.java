@@ -1,8 +1,5 @@
 package gui;
 
-import gui.TableDemo.MyTableModel;
-
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.DefaultListModel;
@@ -10,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
@@ -22,11 +18,14 @@ import model.Etiquetas;
 import model.Modelo;
 
 public class MainWindow {
-	private JFrame frame;
-	private JTable table;
+	private JFrame frame;	
 	private boolean DEBUG = false;
 	class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"First Name",
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private String[] columnNames = {"First Name",
                                         "Last Name",
                                         "Sport",
                                         "# of Years",
@@ -66,7 +65,9 @@ public class MainWindow {
          * then the last column would contain text ("true"/"false"),
          * rather than a check box.
          */
-        public Class getColumnClass(int c) {
+       
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
         }
 
