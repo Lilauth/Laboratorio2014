@@ -15,13 +15,15 @@ public class Modelo {
 	private Etiquetas etiquetas;
 	private Categorias categorias;
 	private Notificaciones notificaciones;
+	private Emisores emisores;
 	
 	public Modelo(){
 		etiquetas = new Etiquetas();
 		categorias = new Categorias();
 		notificaciones = new Notificaciones();
-	}
-	
+		emisores = new Emisores();
+	}	
+
 	/*getters y setters*/
 	public Etiquetas getEtiquetas() {
 		return etiquetas;
@@ -42,6 +44,14 @@ public class Modelo {
 		this.notificaciones = notificaciones;
 	}
 	
+	public Emisores getEmisores() {
+		return emisores;
+	}
+
+	public void setEmisores(Emisores emisores) {
+		this.emisores = emisores;
+	}
+	
 	private void recuperarCategorias(){
 		//recupera las categorias 		
 		categorias.recuperar();
@@ -49,6 +59,10 @@ public class Modelo {
 	
 	private void recuperarEtiquetas(){
 		etiquetas.recuperar();
+	}
+	
+	private void recuperarEmisores(){
+		emisores.recuperar();
 	}
 	
 	/*levanta el modelo desde el archivo de texto*/
@@ -63,14 +77,15 @@ public class Modelo {
 		//String fechaHoraRecepcion;
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
-		String csvFile = "/home/lilauth/Modelo.csv";
-		//String csvFile = "C:\\Users\\Lilauth\\workspace\\Comunicador\\Modelo.csv";
+		//String csvFile = "/home/lilauth/Modelo.csv";
+		String csvFile = "C:\\Users\\Lilauth\\workspace\\Comunicador\\Modelo.csv";
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
 		//recupero categor�as y etiquetas ya cargadas
 		this.recuperarCategorias();
 		this.recuperarEtiquetas();
+		this.recuperarEmisores();
 		
 		try {
 			br = new BufferedReader(new FileReader(csvFile));
@@ -100,8 +115,16 @@ public class Modelo {
 				}
 				//hago un emisor
 				em = new Emisor();
-				em.setIdEmisor(Integer.parseInt(linea[8]));
-				em.setNombre(linea[9]);
+				id = Integer.parseInt(linea[8]);
+				String nombre = linea[9];
+				if(this.emisores.getEmisor(id) != null){
+					em = this.emisores.getEmisor(id);
+				}
+				else{//y lo agrego al modelo
+					em.setNombre(nombre);
+					em.setIdEmisor(id);
+					this.emisores.agregarEmisor(em);
+				}
 				//finalmente hago la notificacion
 				fechaHoraEnvio = linea[2];
 				//fechaHoraRecepcion = linea[3];					
