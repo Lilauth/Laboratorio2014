@@ -19,8 +19,9 @@ public class AplicacionTest {
 		listaCat.setCategorias(ctest.retCategorias());			
 		
 		listaEtiquetas.persistir();
-		listaCat.persistir();
-		
+		listaCat.listar();
+		listaCat.persistir();		
+				
 		Modelo md = new Modelo();
 		md.iniciar();
 	}

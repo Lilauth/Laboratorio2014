@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-//import java.util.Date;
-//import java.text.DateFormat;
-//import java.text.ParseException;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
 
-//import java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
 
 public class Modelo {
 	/*esta clase levanta todas las clases del modelo que haya */
@@ -59,16 +59,16 @@ public class Modelo {
 		Categoria cat;
 		Emisor em;
 		Notificacion notif;
-		//String fechaHoraEnvio;
+		String fechaHoraEnvio;
 		//String fechaHoraRecepcion;
-		//DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
-		//String csvFile = "/home/lilauth/Modelo.csv";
-		String csvFile = "C:\\Users\\Lilauth\\workspace\\Comunicador\\Modelo.csv";
+		String csvFile = "/home/lilauth/Modelo.csv";
+		//String csvFile = "C:\\Users\\Lilauth\\workspace\\Comunicador\\Modelo.csv";
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
-		//recupero categorías y etiquetas ya cargadas
+		//recupero categorï¿½as y etiquetas ya cargadas
 		this.recuperarCategorias();
 		this.recuperarEtiquetas();
 		
@@ -77,11 +77,11 @@ public class Modelo {
 			while ((line = br.readLine()) != null) {
 			    //use comma as separator
 				String[] linea = line.split(cvsSplitBy);				
-				//entonces no es el título
+				//entonces no es el tï¿½tulo
 				id = Integer.parseInt(linea[6]);
 				descripcion = linea[7];
 				et = new Etiqueta(id, descripcion);
-				//me fijo si está en las etiquetas que ya existen
+				//me fijo si estï¿½ en las etiquetas que ya existen
 				if(this.etiquetas.getEtiqueta(id) != null){ 
 					et = this.etiquetas.getEtiqueta(id);
 				}
@@ -103,7 +103,7 @@ public class Modelo {
 				em.setIdEmisor(Integer.parseInt(linea[8]));
 				em.setNombre(linea[9]);
 				//finalmente hago la notificacion
-				//fechaHoraEnvio = linea[2];
+				fechaHoraEnvio = linea[2];
 				//fechaHoraRecepcion = linea[3];					
 					
 				notif = new Notificacion();
@@ -111,7 +111,7 @@ public class Modelo {
 				notif.addEtiqueta(et);
 				notif.setIdNotificacion(Integer.parseInt(linea[0]));
 				notif.setTexto(linea[1]);
-				//notif.setFechaHoraEnvio((Date)df.parse(fechaHoraEnvio));
+				notif.setFechaHoraEnvio((Date)df.parse(fechaHoraEnvio));
 				//if(fechaHoraRecepcion != "null"){
 				//	notif.setFechaHoraRecepcion((Date)df.parse(fechaHoraRecepcion));
 				//}
@@ -122,9 +122,9 @@ public class Modelo {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}/* catch(ParseException e){
+		} catch(ParseException e){
 			e.printStackTrace();
-		}*/finally {
+		}finally {
 			if (br != null) {
 				try {
 					br.close();
