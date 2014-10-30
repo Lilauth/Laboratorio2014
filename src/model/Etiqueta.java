@@ -28,7 +28,7 @@ public class Etiqueta implements Serializable{
 	}
 	
 	public String toString(){
-		return this.descripcion;
+		return String.valueOf(this.idEtiqueta)+" "+this.descripcion;
 	}
 
 }

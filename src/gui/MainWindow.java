@@ -16,14 +16,15 @@ import model.Categorias;
 import model.Etiqueta;
 import model.Etiquetas;
 import model.Modelo;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainWindow {
-	private JFrame frame;	
+	private JFrame frmAplicacin;	
 	private boolean DEBUG = false;
+	Modelo md = new Modelo();
+	
 	class MyTableModel extends AbstractTableModel {
-        /**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 		private String[] columnNames = {"Visto",
                                         "Emisor",
@@ -114,15 +115,12 @@ public class MainWindow {
         }
     }
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					MainWindow window = new MainWindow();
-					window.frame.setVisible(true);
+					window.frmAplicacin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -137,8 +135,7 @@ public class MainWindow {
 		initialize();
 	}
 	
-	private Modelo iniciarModelo(){
-		Modelo md = new Modelo();
+	private Modelo iniciarModelo(){		
 		md.iniciar();
 		return md;
 	}
@@ -152,14 +149,15 @@ public class MainWindow {
 		Categorias cats = m.getCategorias();
 		Etiquetas ets = m.getEtiquetas();
 		
-		frame = new JFrame();
-		frame.setBounds(100, 100, 554, 357);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmAplicacin = new JFrame();
+		frmAplicacin.setTitle("Comunicador");
+		frmAplicacin.setBounds(100, 100, 554, 357);
+		frmAplicacin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAplicacin.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 537, 41);
-		frame.getContentPane().add(panel);
+		frmAplicacin.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JButton btnActualizar = new JButton("Actualizar");
@@ -178,7 +176,7 @@ public class MainWindow {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 43, 537, 251);
-		frame.getContentPane().add(panel_1);
+		frmAplicacin.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		/*JTable table = new JTable(new MyTableModel());
 	    table.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -195,8 +193,20 @@ public class MainWindow {
         
 		JList list = new JList(listModel);
 		//JList list = new JList();		
-		list.setBounds(0, -1, 129, 84);
+		list.setBounds(0, -1, 129, 207);
 		list.setLayoutOrientation(JList.VERTICAL);						
 		panel_1.add(list);
+		
+		JButton btnNuevaEtiqueta = new JButton("Nueva Etiqueta");
+		btnNuevaEtiqueta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				crearEtiquetasABM("A");
+			}
+		});
+		btnNuevaEtiqueta.setBounds(0, 217, 129, 23);
+		panel_1.add(btnNuevaEtiqueta);
+	}
+	private void crearEtiquetasABM(String oper){
+		new EtiquetasABM(frmAplicacin, true, md.getEtiquetas()).setVisible(true);
 	}
 }

@@ -15,6 +15,18 @@ public class Etiquetas {
 		lista = new ArrayList<Etiqueta>();
 	}
 	
+	public int nextID(){
+		/*retorna el siguiente id de etiqueta esperado*/
+		int max = 0;
+		for(Etiqueta e: lista){
+			if(e.getIdEtiqueta() > max){
+				max = e.getIdEtiqueta();
+			}
+		}
+		max = max + 1;
+		return max;
+	}
+	
 	public void setEtiquetas(ArrayList<Etiqueta> lista){
 		this.lista = lista; 
 	}
