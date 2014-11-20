@@ -14,14 +14,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class MenuPrincipal {
-	private JFrame frmAdministracinDeNotificaciones;	
+	private JFrame frmAdministracinDeNotificaciones;
+	private static boolean cargaDeArchivo = false;
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				Modelo md;
 				md = new Modelo();
 				try {
-					md.iniciar();
+					if(cargaDeArchivo){
+						md.iniciar();
+					}
+					else{
+						md.recuperarDatosGuardados();
+					}
 					MenuPrincipal window = new MenuPrincipal(md);
 					window.frmAdministracinDeNotificaciones.setVisible(true);
 				} catch (Exception e) {

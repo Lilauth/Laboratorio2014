@@ -65,6 +65,12 @@ public class Modelo {
 		emisores.recuperar();
 	}
 	
+	public void recuperarDatosGuardados(){
+		this.recuperarCategorias();
+		this.recuperarEtiquetas();
+		this.recuperarEmisores();
+	}
+	
 	/*levanta el modelo desde el archivo de texto*/
 	public boolean iniciar(){
 		int id;

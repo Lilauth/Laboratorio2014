@@ -26,7 +26,7 @@ public class EtiquetaABM extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField edCodigo;
 	private JTextField edDescrip;
-	private JButton okButton;	
+	private JButton okButton;
 	
 	private Etiquetas lista;
 	private Etiqueta et;
@@ -44,7 +44,7 @@ public class EtiquetaABM extends JDialog {
 			edDescrip.setText(et.getDescripcion());
 			lista.eliminarEtiqueta(e);
 		}	
-		okButton.addActionListener(new Aceptar(lista, et));
+		
 	}
 	
 	public EtiquetaABM() {
@@ -77,7 +77,21 @@ public class EtiquetaABM extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				okButton = new JButton("OK");
+				okButton = new JButton("OK");				
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						et.setDescripcion(edDescrip.getText());
+						et.setIdEtiqueta(Integer.valueOf(edCodigo.getText()));
+						if(lista.existeEtiqueta(et)){
+							JOptionPane.showMessageDialog(contentPanel, "el elemento ya existe", "error de aceptar", JOptionPane.ERROR_MESSAGE);
+						}
+						else{
+							lista.agregarEtiqueta(et);
+							lista.persistir();
+							dispose();
+						}	
+					}
+				});
 				//okButton.addActionListener(new Aceptar(lista, et));				
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
@@ -97,25 +111,4 @@ public class EtiquetaABM extends JDialog {
 		}
 	}
 	
-	/*clase internas que puedo llegar a necesitar*/
-	public class Aceptar implements ActionListener{
-		Etiquetas listaEtiquetas;
-		Etiqueta e;
-		
-		public Aceptar(Etiquetas lista, Etiqueta e) {
-			listaEtiquetas = lista;
-			this.e = e;
-		}
-		@Override
-		public void actionPerformed(ActionEvent arg0) {	
-			if(lista.existeEtiqueta(e)){
-				JOptionPane.showMessageDialog(contentPanel, "el elemento ya existe", "error de aceptar", JOptionPane.ERROR_MESSAGE);
-			}
-			else{
-				lista.agregarEtiqueta(e);				
-				dispose();
-			}	
-		}
-		
-	}
 }
