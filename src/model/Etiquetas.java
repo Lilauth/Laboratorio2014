@@ -41,8 +41,8 @@ public class Etiquetas {
 			System.out.println(e.getDescripcion());
 		}
 	}
-	
-	private boolean existeEtiqueta(Etiqueta et){
+	//se fija si existe o no por la descripción
+	public boolean existeEtiqueta(Etiqueta et){
 		int i = 0;
 		Boolean ok = false;
 		while((i < lista.size()) && (!ok)){

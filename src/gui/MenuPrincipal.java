@@ -55,17 +55,7 @@ public class MenuPrincipal {
 		
 		JMenuItem miEtiquetasABM = new JMenuItem("ABM de Etiquetas");
 		//Administración de etiquetas
-		miEtiquetasABM.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//ABM de Etiquetas
-				EtiquetasAdm vEtiquetas = new EtiquetasAdm();
-			/*	Etiquetas et = new Etiquetas();
-				et = md.getEtiquetas()
-				vEtiquetas.setEtiquetas(et);*/
-				vEtiquetas.setVisible(true);
-				vEtiquetas.setAlwaysOnTop(true);
-			}
-		});
+		miEtiquetasABM.addActionListener(new ListadoEtiquetas(md.getEtiquetas()));
 		mnAdmin.add(miEtiquetasABM);
 		
 		JMenuItem miCategoriasABM = new JMenuItem("ABM de Categor\u00EDas");
@@ -84,6 +74,23 @@ public class MenuPrincipal {
 		
 		JMenuItem miAcercaDe = new JMenuItem("Esta aplicaci\u00F3n");
 		mnAcercaDe.add(miAcercaDe);
+	}
+	
+	/*clase internas que puedo llegar a necesitar*/
+	public class ListadoEtiquetas implements ActionListener{
+		Etiquetas listaEtiquetas;
+		public ListadoEtiquetas(Etiquetas e) {
+			listaEtiquetas = e;
+		}
+		@Override
+		public void actionPerformed(ActionEvent arg0) {			
+			//Listado de Etiquetas
+			EtiquetasAdm vEtiquetas = new EtiquetasAdm();
+			vEtiquetas.setVisible(true);
+			vEtiquetas.setEtiquetas(listaEtiquetas);
+			vEtiquetas.setAlwaysOnTop(true);
+		}
+		
 	}
 
 }
